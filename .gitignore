@@ -1,0 +1,54 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+.Python
+build/
+dist/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Audio data (raw / prepared clips — large, not versioned)
+*.wav
+*.flac
+*.mp3
+data/
+
+# Manifests (JSONL index files, dataset-specific, machine paths)
+*.jsonl
+
+# Model checkpoints, weights, logs, run outputs
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.nemo
+*.log
+*.csv
+checkpoints/
+runs/
+wandb/
+
+# Plots / generated images (except curated docs assets)
+*.png
+*.jpg
+*.jpeg
+!assets/**/*.png
+!assets/**/*.jpg
+!assets/**/*.jpeg
+
+# Internal dataset-prep scripts (reference NAS paths, not meant for upload)
+scripts/
