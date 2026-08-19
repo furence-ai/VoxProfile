@@ -1,6 +1,6 @@
 # VoxProfile
 
-*[한국어 README](README.md)*
+*[한국어 README](README.md)* · *[Pretrained weights (Hugging Face)](https://huggingface.co/furence-ai/VoxProfile)*
 
 Predicts a speaker's **gender** and **age decade** from a short audio clip.
 A pretrained speaker-embedding encoder (TitaNet-L) feeds two lightweight
@@ -27,8 +27,8 @@ classification heads, so both attributes come out of a single forward pass.
 
 ## Performance
 
-Evaluated on a 624-sample held-out test set, using the `runs/2026_05_21`
-checkpoint.
+Evaluated on a 624-sample held-out test set, using the
+[pretrained checkpoint](https://huggingface.co/furence-ai/VoxProfile).
 
 | Metric | Value |
 |---|---|
@@ -80,19 +80,28 @@ pip install -r requirements.txt
 (`nemo_toolkit[asr]`), from either a HuggingFace/NGC model name or a local
 `.nemo` checkpoint path — set in `TrainConfig.encoder_name`.
 
+## Pretrained weights
+
+The checkpoint isn't in this repo — it's hosted on
+[Hugging Face](https://huggingface.co/furence-ai/VoxProfile).
+
+```bash
+hf download furence-ai/VoxProfile model.pt --local-dir runs
+```
+
 ## Usage
 
 Run everything from the repo root, as a module (`voxprofile` is a package):
 
 ```bash
 # Evaluate a checkpoint over a manifest
-python -m voxprofile.evaluate --ckpt runs/2026_05_21/best_model.pt --manifest path/to/test.jsonl
+python -m voxprofile.evaluate --ckpt runs/model.pt --manifest path/to/test.jsonl
 
 # Run inference on a single audio file
-python -m voxprofile.evaluate --ckpt runs/2026_05_21/best_model.pt --audio path/to/sample.wav
+python -m voxprofile.evaluate --ckpt runs/model.pt --audio path/to/sample.wav
 
 # Per-class confusion / MAE breakdown on the test set
-python -m voxprofile.analyze_test --ckpt runs/2026_05_21/best_model.pt --manifest path/to/test.jsonl
+python -m voxprofile.analyze_test --ckpt runs/model.pt --manifest path/to/test.jsonl
 ```
 
 Hyperparameters (paths, batch size, LR, LoRA, epochs, etc.) are configured in

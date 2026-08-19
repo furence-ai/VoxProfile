@@ -1,6 +1,6 @@
 # VoxProfile
 
-*[English README](README.en.md)*
+*[English README](README.en.md)* · *[사전학습 가중치 (Hugging Face)](https://huggingface.co/furence-ai/VoxProfile)*
 
 짧은 음성 클립 하나로 화자의 **성별**과 **연령대**를 예측하는 모델입니다.
 사전학습된 화자 임베딩 인코더(TitaNet-L) 위에 가벼운 분류 헤드 두 개를
@@ -25,7 +25,7 @@
 
 ## 성능
 
-`runs/2026_05_21` 체크포인트 기준, 테스트셋 624개 샘플 평가 결과입니다.
+위 [사전학습 가중치](https://huggingface.co/furence-ai/VoxProfile) 기준, 테스트셋 624개 샘플 평가 결과입니다.
 
 | 지표 | 값 |
 |---|---|
@@ -76,19 +76,28 @@ pip install -r requirements.txt
 인코더를 불러옵니다. HuggingFace/NGC 모델명 또는 로컬 `.nemo` 체크포인트
 경로를 사용할 수 있으며, `TrainConfig.encoder_name`에서 설정합니다.
 
+## 사전학습 가중치
+
+체크포인트는 이 저장소가 아니라 [Hugging Face](https://huggingface.co/furence-ai/VoxProfile)에
+올라가 있습니다.
+
+```bash
+hf download furence-ai/VoxProfile model.pt --local-dir runs
+```
+
 ## 사용법
 
 저장소 루트에서 모듈 형태로 실행합니다 (`voxprofile`은 패키지입니다):
 
 ```bash
 # 매니페스트 전체에 대해 체크포인트 평가
-python -m voxprofile.evaluate --ckpt runs/2026_05_21/best_model.pt --manifest path/to/test.jsonl
+python -m voxprofile.evaluate --ckpt runs/model.pt --manifest path/to/test.jsonl
 
 # 단일 오디오 파일 추론
-python -m voxprofile.evaluate --ckpt runs/2026_05_21/best_model.pt --audio path/to/sample.wav
+python -m voxprofile.evaluate --ckpt runs/model.pt --audio path/to/sample.wav
 
 # 테스트셋 클래스별 혼동행렬 / MAE 분석
-python -m voxprofile.analyze_test --ckpt runs/2026_05_21/best_model.pt --manifest path/to/test.jsonl
+python -m voxprofile.analyze_test --ckpt runs/model.pt --manifest path/to/test.jsonl
 ```
 
 하이퍼파라미터(경로, 배치 크기, 학습률, LoRA, epoch 등)는
