@@ -115,3 +115,7 @@ requirements.txt
 
 Note: data manifests, model checkpoints, and experiment run outputs
 (`runs/`) are not tracked in this repo (see `.gitignore`).
+
+## License
+
+[MIT](LICENSE)

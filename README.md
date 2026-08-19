@@ -111,3 +111,7 @@ requirements.txt
 
 참고: 데이터 매니페스트, 모델 체크포인트, 실험 결과물(`runs/`)은
 이 저장소에 포함되지 않습니다 (`.gitignore` 참고).
+
+## 라이선스
+
+[MIT](LICENSE)
